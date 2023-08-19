@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import {
-    Button,
     Heading,
     useToast,
 } from '@chakra-ui/react'
+import { Button } from "@nextui-org/react";
 function SignUp() {
 
     // necessary vars
@@ -84,6 +84,7 @@ function SignUp() {
                 }
                 else {
                     document.getElementById('username').style.outline = 'red 3px solid'
+                    
                     toast({
                         title: `${statuses[2]} email already in use`,
                         status: statuses[2],
@@ -93,7 +94,7 @@ function SignUp() {
                 
             }
             else {
-                document.getElementById('username').style.outline = 'red 3px solid'
+                
                 document.getElementById('password').style.outline = 'red 3px solid'
                 document.getElementById('fname').style.outline = 'red 3px solid'
                 document.getElementById('lname').style.outline = 'red 3px solid'
@@ -103,8 +104,11 @@ function SignUp() {
         else {
 
             document.getElementById('username').style.outline = 'red 3px solid'
+            document.getElementById('fname').style.outline = 'red 3px solid'
+            document.getElementById('lname').style.outline = 'red 3px solid'
+            document.getElementById('password').style.outline = 'red 3px solid'
             toast({
-                title: `${statuses[2]} invalid email `,
+                title: `${statuses[2]} invalid credentials `,
                 status: statuses[2],
                 isClosable: true,
             })
@@ -112,7 +116,9 @@ function SignUp() {
 
     }
 
-
+    useEffect(() => {
+        document.title = 'SignUp ✳ Colive'
+    }, [])
 
     return (
         <div className='Login-Signup'>
@@ -151,7 +157,7 @@ function SignUp() {
                     <label className='utag-label'>already have account ? <u onClick={handleLogin}>login</u></label>
                 </div>
                 <div>
-                    <Button colorScheme='twitter' id='submit' size='md' onClick={handleSubmit}>
+                    <Button variant='shadow' color='primary' id='submit' onClick={handleSubmit}>
                         SignUp
                     </Button>
                 </div>

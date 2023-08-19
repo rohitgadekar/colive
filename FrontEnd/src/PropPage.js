@@ -1,21 +1,27 @@
 import {
-    Stack, AspectRatio, TabPanel, TabPanels, Tab, TabList, Tabs, Text, Tag,  Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading, Card, CardBody, Image, HStack, Box, List, SimpleGrid, Container,StackDivider
+    Stack, AspectRatio, TabPanel, TabPanels, Tab, TabList, Tabs, Text,  Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading, Card, CardBody, Image, HStack, Box, List, SimpleGrid, Container,StackDivider, useToast
 } from '@chakra-ui/react';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, User, Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
+import { Chip } from "@nextui-org/react";
 import Lottie from "lottie-react";
 import sucess from './components/sucess.json'
 import React from "react";
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 
 
 function PropPage() {
 
+    useEffect(()=>{
+        document.title = state.reducer.property.data.record.prop[s].title
+        // eslint-disable-next-line
+    },[])
     const state = useSelector((state) => state)
-    // const toast = useToast()
-    // const statuses = ['success', 'error', 'warning', 'info']
+    const toast = useToast()
+    const statuses = ['success', 'error', 'warning', 'info']
+    
     const navigate = useNavigate();
     var [values] = useState({
         username: state.reducer.user.users[0],
@@ -53,6 +59,7 @@ function PropPage() {
     }
 
     const handleSchedule = () => {
+        if(values.fname !== '' && values.lname !== '' && values.date !== '' && genderText !== '' && iamText !== '' && values.number !== '') {
         let unq = Math.floor(new Date().valueOf() * Math.random())
         localStorage.setItem('ref', unq)
         fetch("http://localhost:8081/users/scheduled/", {
@@ -69,7 +76,9 @@ function PropPage() {
                 listedPrice: state.reducer.property.data.record.prop[s].formattedPrice,
                 src: state.reducer.property.data.record.prop[s].imageUrl,
                 ref: unq,
-                time: values.date.slice(11)
+                time: values.date.slice(11),
+                city: state.reducer.property.data.record.prop[s].City,
+                area: state.reducer.property.data.record.prop[s].Area
             }),
             headers: { 'Content-Type': 'application/json' }
         })
@@ -78,17 +87,19 @@ function PropPage() {
                 setSucessState("Visit Scheduled")
                 onOpen()
             })
+        }
+        else {
+            toast({
+                title: `fields empty `,
+                status: statuses[3],
+                isClosable: true,
+            })
+        }
     }
 
 
     const handleReserve = () => {
-        console.log(state.reducer.user.users[0])
-        console.log(values.fname)
-        console.log(values.lname)
-        console.log(values.number)
-        console.log(values.date)
-        console.log(genderText)
-        console.log(iamText)
+        if (values.fname !== '' && values.lname !== '' && values.date !== '' && genderText !== '' && iamText !== '' && values.number !== '') {
 
         let unq = Math.floor(new Date().valueOf() * Math.random())
         fetch("http://localhost:8081/users/reserved/", {
@@ -105,7 +116,9 @@ function PropPage() {
                 listedPrice: state.reducer.property.data.record.prop[s].formattedPrice,
                 src: state.reducer.property.data.record.prop[s].imageUrl,
                 ref: unq,
-                time: values.date.slice(11)
+                time: values.date.slice(11),
+                city: state.reducer.property.data.record.prop[s].City,
+                area: state.reducer.property.data.record.prop[s].Area
             }),
             headers: { 'Content-Type': 'application/json' }
         })
@@ -114,6 +127,15 @@ function PropPage() {
                 setSucessState("Property Reserved")
                 onOpen()
             })
+
+        }
+        else {
+            toast({
+                title: `fields empty `,
+                status: statuses[3],
+                isClosable: true,
+            })
+        }
     }
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -126,9 +148,7 @@ function PropPage() {
             <Box className='dash'>
                 {/* header start */}
                 <nav className='dash-nav'>
-                    <Heading onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }} size='sm' fontSize='50px'>
-                        COLIVE
-                    </Heading>
+                    <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
                     <ul>
 
                         <div className="flex items-center gap-4">
@@ -138,7 +158,7 @@ function PropPage() {
                                         as="button"
                                         avatarProps={{
                                             isBordered: false,
-                                            src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+                                            src: "https://res.cloudinary.com/eaglestudiosindia/image/upload/v1692431948/project/3105265_1_wnwylr.png",
                                         }}
                                         className="transition-transform"
 
@@ -153,8 +173,8 @@ function PropPage() {
                                         My Account
                                     </DropdownItem>
                                     <DropdownItem key="My Bookings" onAction={() => { navigate('/my-bookings') }}>My Bookings</DropdownItem>
-                                    <DropdownItem key="Help_and_feedback" onAction={() => { }}>
-                                        Help & Feedback
+                                    <DropdownItem key="Help_and_feedback" onClick={() => { navigate('/faq') }}>
+                                        Faqs
                                     </DropdownItem>
                                     <DropdownItem onAction={() => { navigate('/login') }} key="Log Out" color="danger">
                                         Log Out
@@ -199,11 +219,18 @@ function PropPage() {
                                     fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
                                     {state.reducer.property.data.record.prop[s].title}
                                 </Heading>
+                                
                                 <Text
                                     color={'white'}
                                     fontWeight={400}
                                     fontSize={'2xl'}>
-                                    {state.reducer.property.data.record.prop[s].formattedPrice}
+                                    {state.reducer.property.data.record.prop[s].formattedPrice} 
+                                </Text>
+                                <Text
+                                    color={'white'}
+                                    fontWeight={400}
+                                    fontSize={'2xl'}>
+                                    {state.reducer.property.data.record.prop[s].Area}  • {state.reducer.property.data.record.prop[s].City}
                                 </Text>
                             </Box>
                             {/* price && title end */}
@@ -239,16 +266,24 @@ function PropPage() {
 
                                         <SimpleGrid columns={{ base: 1, md: 1 }} spacing={10}>
                                             <List spacing={0}>
-                                                <Tag colorScheme='yellow' margin={'6px'}> Travel cot
-                                                </Tag>
-                                                <Tag colorScheme='yellow' margin={'6px'}>Private patio or balcony
-                                                </Tag>
-                                                <Tag colorScheme='yellow' margin={'6px'}>Wifi</Tag>
-                                                <Tag colorScheme='yellow' margin={'6px'}>Refrigerator</Tag>
-                                                <Tag colorScheme='yellow' margin={'6px'}>Microwave</Tag>
-                                                <Tag colorScheme='yellow' margin={'6px'}>Oven</Tag>
-                                                <Tag colorScheme='yellow' margin={'6px'}>Coffee maker</Tag>
-                                                <Tag colorScheme='yellow' margin={'6px'}>Dishes and silverware</Tag>
+                                                
+                                                <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>Travel Cot
+                                                </Chip>
+                                                <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>Private patio or balcony
+                                                </Chip>
+                                                <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>WIFI
+                                                </Chip>
+                                                <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>Refrigerator
+                                                </Chip>
+                                                <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>Microwave
+                                                </Chip>
+                                                <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>Oven
+                                                </Chip>
+                                                <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>Coffee maker
+                                                </Chip>
+                                                <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>Dishes and silverware
+                                                </Chip>
+                                                
                                             </List>
                                         </SimpleGrid>
                                     </Box>
@@ -269,12 +304,17 @@ function PropPage() {
 
 
                                     <List spacing={0}>
-                                        <Tag margin={'6px'} colorScheme='yellow'>Check-in after 2:00 pm</Tag>
-                                        <Tag margin={'6px'} colorScheme='yellow'>2 guests maximum</Tag>
-                                        <Tag margin={'6px'} colorScheme='yellow'>No parties or events</Tag>
-                                        <Tag margin={'6px'} colorScheme='yellow'>No smoking</Tag>
-                                        <Tag margin={'6px'} colorScheme='yellow'>No pets</Tag>
 
+                                        <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>Check-in after 2:00 pm
+                                        </Chip>
+                                        <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>2 guests maximum
+                                        </Chip>
+                                        <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>No parties or events
+                                        </Chip>
+                                        <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>No smoking
+                                        </Chip>
+                                        <Chip radius='md' color='warning' variant='shadow' colorScheme='yellow' className='m-2'>No pets
+                                        </Chip>
                                     </List>
                                 </Box>
                                 {/* things to know end */}
@@ -512,8 +552,8 @@ function PropPage() {
                         <Stack spacing={6}>
                             <Box>
                             </Box>
-                            <Text fontSize={'xl'} fontWeight={'800'}>
-                                © 2022 Colive. All rights reserved
+                            <Text fontSize={'xl'} fontWeight={'500'}>
+                                © 2023 Colive. All rights reserved
                             </Text>
 
                         </Stack>

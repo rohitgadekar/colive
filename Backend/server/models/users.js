@@ -64,6 +64,14 @@ const usersSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    city: {
+        type: String,
+        required: false
+    },
+    area: {
+        type: String,
+        required: false
+    },
     scheduled: [],
     reserved: []
 

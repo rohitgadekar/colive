@@ -2,9 +2,6 @@ import { Box } from '@chakra-ui/react'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User } from "@nextui-org/react";
 import { Card, CardHeader, CardBody, CardFooter, Button } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
-import {
-    Heading,
-} from '@chakra-ui/react'
 import properties from './components/properties.json'
 import { persistor } from "../src/redux/store";
 import { clearUser } from './redux/slice/userslice';
@@ -15,10 +12,15 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Bookings() {
+
+
+
+
     const [records] = useState([])
     const [reserved] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => {
+        document.title = 'My Bookings ✳ Colive'
         fetch("http://localhost:8081/users/get/" + state.users[0], {
             method: "GET",
             headers: { 'Content-Type': 'application/json' }
@@ -77,9 +79,7 @@ function Bookings() {
             <Box className='dash' style={{ paddingBottom: '5em' }}>
                 {/* header */}
                 <nav className='dash-nav'>
-                    <Heading size='sm' fontSize='50px' onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}>
-                        COLIVE
-                    </Heading>
+                    <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
                     <ul>
                         <div className="flex items-center gap-4">
                             <Dropdown placement="bottom-start">
@@ -88,7 +88,7 @@ function Bookings() {
                                         as="button"
                                         avatarProps={{
                                             isBordered: false,
-                                            src: "https://res.cloudinary.com/eaglestudiosindia/image/upload/v1692350523/project/h2h5ypdgs0pvyqnqgyem.png",
+                                            src: "https://res.cloudinary.com/eaglestudiosindia/image/upload/v1692431948/project/3105265_1_wnwylr.png",
                                         }}
                                         className="transition-transform"
 
@@ -103,8 +103,8 @@ function Bookings() {
                                         My Account
                                     </DropdownItem>
                                     <DropdownItem key="My Bookings" onClick={() => { }}>My Bookings</DropdownItem>
-                                    <DropdownItem key="Help_and_feedback" onClick={() => { }}>
-                                        Help & Feedback
+                                    <DropdownItem key="Faqs" onClick={() => { navigate('/faq') }}>
+                                        Faqs
                                     </DropdownItem>
                                     <DropdownItem onAction={() => { dispatch(clearUser); persistor.purge(); localStorage.clear(); window.location.replace('/login') }} key="Log Out" color="danger">
                                         Log Out
@@ -142,7 +142,7 @@ function Bookings() {
                                     </Button>
                                 </CardHeader>
                                 <CardBody className="px-3 py-0 text-small text-default-400">
-                                    <Image src={records[index][10]} style={{ width: '500px' }}></Image>
+                                    <Image src={records[index][10]} style={{ width: '600px' }}></Image>
                                     <p style={{ paddingTop: '1em', color: 'white', fontSize: '2em' }}>
                                         {records[index][8]}
                                     </p>
@@ -150,7 +150,7 @@ function Bookings() {
                                         {records[index][9]}
                                     </p>
                                     <span className="pt-2" style={{ color: 'white' }}>
-                                        CITY
+                                        {records[index][12]} • {records[index][13]}
                                     </span>
                                 </CardBody>
                                 <CardFooter className="gap-3">
@@ -187,7 +187,7 @@ function Bookings() {
                                     </Button>
                                 </CardHeader>
                                 <CardBody className="px-3 py-0 text-small text-default-400">
-                                    <Image src={reserved[index][10]} style={{ width: '500px' }}></Image>
+                                    <Image src={reserved[index][10]} style={{ width: '600px' }}></Image>
                                     <p style={{ paddingTop: '1em', color: 'white', fontSize: '2em' }}>
                                         {reserved[index][8]}
                                     </p>
@@ -195,7 +195,7 @@ function Bookings() {
                                         {reserved[index][9]}
                                     </p>
                                     <span className="pt-2" style={{ color: 'white' }}>
-                                        CITY
+                                        {reserved[index][12]} • {reserved[index][13]}
                                     </span>
                                 </CardBody>
                                 <CardFooter className="gap-3">
@@ -226,9 +226,7 @@ function Bookings() {
             <Box className='dash' style={{ paddingBottom: '5em' }}>
                 {/* header */}
                 <nav className='dash-nav'>
-                    <Heading size='sm' fontSize='50px' onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}>
-                        COLIVE
-                    </Heading>
+                    <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
                     <ul>
                         <div className="flex items-center gap-4">
                             <Dropdown placement="bottom-start">
@@ -237,7 +235,7 @@ function Bookings() {
                                         as="button"
                                         avatarProps={{
                                             isBordered: false,
-                                            src: "https://res.cloudinary.com/eaglestudiosindia/image/upload/v1692351137/project/icons8-user-64_n8vefz.png",
+                                            src: "https://res.cloudinary.com/eaglestudiosindia/image/upload/v1692431948/project/3105265_1_wnwylr.png",
                                         }}
                                         className="transition-transform"
 
@@ -252,8 +250,8 @@ function Bookings() {
                                         My Account
                                     </DropdownItem>
                                     <DropdownItem key="My Bookings" onClick={() => { }}>My Bookings</DropdownItem>
-                                    <DropdownItem key="Help_and_feedback" onClick={() => { }}>
-                                        Help & Feedback
+                                    <DropdownItem key="Faqs" onClick={() => { navigate('/faq') }}>
+                                        Faqs
                                     </DropdownItem>
                                     <DropdownItem onAction={() => { dispatch(clearUser); persistor.purge(); localStorage.clear(); window.location.replace('/login') }} key="Log Out" color="danger">
                                         Log Out

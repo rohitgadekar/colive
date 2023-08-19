@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button, Input } from "@nextui-org/react";
-import emailjs from '@emailjs/browser';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button } from "@nextui-org/react";
 import {
-    
+
     Heading,
     useToast
 } from '@chakra-ui/react'
@@ -17,21 +16,20 @@ function Login() {
         username: '',
         password: ''
     })
+    var [email] = useState('')
+    var [password] = useState('')
     const navigate = useNavigate()
     const [state, setState] = useState(false)
     const toast = useToast()
     const statuses = ['success', 'error', 'warning', 'info']
-    
-  
-    
-    const handleC = () => {
-        
-    }
+
+
 
     //on login click
     function handleSignup() {
         navigate('/')
     }
+
 
     const handleChange = (e) => {
         const username = document.getElementById('username')
@@ -121,8 +119,8 @@ function Login() {
                             status: statuses[0],
                             isClosable: true,
                         })
-                        
-                        
+
+
                         dispatch(addUser(values.username))
                         dispatch(addUser(fname))
                         dispatch(addUser(lname))
@@ -141,15 +139,81 @@ function Login() {
     const form = useRef();
 
     const sendEmail = (e) => {
-        e.preventDefault();
 
-        emailjs.sendForm('service_yk539x9', 'template_tl0hy1s', form.current, 'k0THbH4U1mHE2wrQm')
-            .then((result) => {
-                console.log(result.text);
-            }, (error) => {
-                console.log(error.text);
-            });
+        // eslint-disable-next-line
+        var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if (email.match(mailformat)) {
+
+            fetch('http://localhost:8081/users', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    let key = 0;
+                    for (let index = 0; index < data.length; index++) {
+                        if (email === data[index].username) {
+                            key = 1
+                            break;
+                        }
+                    }
+
+                    if (key === 1) {
+
+                        if (password !== '') {
+                            fetch("http://localhost:8081/users/upwd/", {
+                                method: "PATCH",
+                                body: JSON.stringify({
+                                    username: email,
+                                    password: password,
+                                }),
+                                headers: { 'Content-Type': 'application/json' }
+                            })
+                                .then(res => res.json()).then(data => {
+                                    toast({
+                                        title: `password changed`,
+                                        status: statuses[2],
+                                        isClosable: true,
+                                    })
+                                    
+                                })
+                                
+                        } else {
+                            console.log(document.getElementById('password').value)
+                            toast({
+                                title: `enter password`,
+                                status: statuses[1],
+                                isClosable: true,
+                            })
+                        }
+                    }
+                    else {
+                        toast({
+                            title: `email not found`,
+                            status: statuses[1],
+                            isClosable: true,
+                        })
+                    }
+                })
+
+
+
+
+        } else {
+            toast({
+                title: `invalid email`,
+                status: statuses[2],
+                isClosable: true,
+            })
+        }
+
+
+
     };
+
+    useEffect(()=>{
+        document.title = 'Login ✳ Colive'
+    },[])
 
 
     return (
@@ -170,20 +234,29 @@ function Login() {
                     <label className='utag-label'>don't have account ? <u onClick={handleSignup}>signup</u></label>
                 </div>
                 <div className='utag'>
-                    <label className='utag-label'>forgot password ? <u onClick={handleSignup}>click here</u></label>
+                    <label className='utag-label'>forgot password ? <u onClick={onOpen}>click here</u></label>
                 </div>
+
                 
-                <Button onPress={onOpen}>Open Modal</Button>
-                <Modal className='res' style={{color:'white'}} isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+                <Modal className='res' style={{ color: 'white' }} isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
                     <ModalContent>
                         {(onClose) => (
                             <>
                                 <ModalHeader className="flex flex-col gap-1">Forgot Password</ModalHeader>
                                 <ModalBody>
-                                    <form ref={form} style={{display:'flex', flexDirection:'column'}} onSubmit={sendEmail}>
-                                        <label>Email</label>
-                                        <Input  variant='default' name="user_email" />
-                                        
+                                    <form ref={form} style={{ display: 'flex', flexDirection: 'column' }} onSubmit={sendEmail}>
+                                        <label style={{ paddingBottom: '.8em' }}>Email</label>
+
+                                        <input autoComplete='off' className='forgot' variant='default' name="user_email" placeholder='enter 
+                                        email' onChange={(e) => { email = e.target.value; }} />
+
+
+
+                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                            <label style={{ paddingBottom: '.8em' }}>Enter Password</label>
+                                            <input autoComplete='off' id='password' className='forgot' placeholder='enter password' onChange={(e) => { password = e.target.value; }} />
+                                        </div>
+
                                     </form>
                                 </ModalBody>
                                 <ModalFooter>
@@ -191,7 +264,7 @@ function Login() {
                                         Close
                                     </Button>
                                     <Button color="primary" onPress={sendEmail}>
-                                        Action
+                                        Submit
                                     </Button>
                                 </ModalFooter>
                             </>
@@ -199,7 +272,7 @@ function Login() {
                     </ModalContent>
                 </Modal>
                 <div>
-                    <Button isLoading={state} size='md' colorScheme='twitter' variant='solid' onClick={handleC}>
+                    <Button isLoading={state} variant='shadow' color='primary' onClick={handleSubmit}>
                         Login
                     </Button>
                 </div>

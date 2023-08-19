@@ -26,6 +26,7 @@ function Dashboard() {
 
     // fetch properties from db
     useEffect(() => {
+        document.title = 'Home ✳ Colive'
         axios.get('https://api.jsonbin.io/v3/b/64854f43b89b1e2299ad1fa1')
             .then(res => {
                 SetProp(res.data.record.prop)
@@ -134,10 +135,8 @@ function Dashboard() {
                 <Box className='dash'>
                     {/* header */}
                     <nav className='dash-nav'>
-                        {/* <Heading size='sm' fontSize='50px'>
-                            COLIVE
-                        </Heading> */}
-                        <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
+                        
+                        <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
 
                         <ul>
                             <div className="flex items-center gap-4">
@@ -147,9 +146,10 @@ function Dashboard() {
                                             as="button"
                                             avatarProps={{
                                                 isBordered: false,
-                                                src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+                                                src: "https://res.cloudinary.com/eaglestudiosindia/image/upload/v1692431948/project/3105265_1_wnwylr.png",
                                             }}
                                             className="transition-transform"
+                                            
 
                                         />
                                     </DropdownTrigger>
@@ -162,8 +162,8 @@ function Dashboard() {
                                             My Account
                                         </DropdownItem>
                                         <DropdownItem key="My Bookings" onClick={() => { navigate('/my-bookings') }}>My Bookings</DropdownItem>
-                                        <DropdownItem key="Help_and_feedback" onClick={() => { }}>
-                                            Help & Feedback
+                                        <DropdownItem key="Faqs" onClick={() => { navigate('/faq') }}>
+                                            Faqs
                                         </DropdownItem>
                                         <DropdownItem onAction={() => { dispatch(clearUser); persistor.purge(); localStorage.clear(); window.location.replace('/login') }} key="Log Out" color="danger">
                                             Log Out

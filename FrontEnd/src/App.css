@@ -366,3 +366,30 @@ div .res {
 .ToggleCard {
   cursor: pointer;
 }
+
+.forgot {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  font-size: 1.2em;
+  border-radius: .8em;
+  height: 2.5em;
+  outline: none;
+  padding-left: 1em;
+  margin-bottom: 1em;
+}
+
+.forgot::placeholder {
+  color: silver;
+}
+
+.colive:hover {
+  cursor: pointer;
+}
+
+.accord {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  padding: 2em;
+  border-radius: .8em;
+  flex-grow: unset;
+}

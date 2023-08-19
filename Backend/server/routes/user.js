@@ -67,6 +67,21 @@ router.patch('/', async (req, res) => {
     }
 })
 
+router.patch('/upwd/', async (req, res) => {
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password,
+    })
+    try {
+        const newUser = await User.updateOne({ "username": user.username }, { $set: { "password": user.password } })
+
+        res.json(newUser)
+        // res.send(newUser)
+    } catch (error) {
+        res.json({ message: error.message })
+    }
+})
+
 
 router.patch('/scheduled/', async (req, res) => {
     const user = new User({
@@ -81,11 +96,13 @@ router.patch('/scheduled/', async (req, res) => {
         property: req.body.property,
         listedPrice:req.body.listedPrice,
         src:req.body.src,
-        time:req.body.time
+        time:req.body.time,
+        city:req.body.city,
+        area:req.body.area
     })
     try {
         
-        const newUser = await User.updateOne({ username: user.username }, { $push: { scheduled: { ref: [user.fname, user.lname, user.username, user.phone, user.date, user.gender, user.profession, user.ref, user.property, user.listedPrice, user.src, user.time] } } })
+        const newUser = await User.updateOne({ username: user.username }, { $push: { scheduled: { ref: [user.fname, user.lname, user.username, user.phone, user.date, user.gender, user.profession, user.ref, user.property, user.listedPrice, user.src, user.time, user.city, user.area] } } })
 
         // res.json(newUser)
         res.send(newUser)
@@ -108,10 +125,12 @@ router.patch('/reserved/', async (req, res) => {
         property: req.body.property,
         listedPrice: req.body.listedPrice,
         src: req.body.src,
-        time: req.body.time
+        time: req.body.time,
+        city: req.body.city,
+        area: req.body.area
     })
     try {
-        const newUser = await User.updateOne({ username: user.username }, { $push: { reserved: { ref: [user.fname, user.lname, user.username, user.phone, user.date, user.gender, user.profession, user.ref, user.property, user.listedPrice, user.src, user.time] } } })
+        const newUser = await User.updateOne({ username: user.username }, { $push: { reserved: { ref: [user.fname, user.lname, user.username, user.phone, user.date, user.gender, user.profession, user.ref, user.property, user.listedPrice, user.src, user.time, user.city, user.area] } } })
 
         // res.json(newUser)
         res.send(newUser)

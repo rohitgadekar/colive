@@ -2,14 +2,13 @@ import { Box } from '@chakra-ui/react'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User } from "@nextui-org/react";
 import { persistor } from "../src/redux/store";
 import { clearUser } from './redux/slice/userslice';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { addUser, updateUser } from './redux/slice/userslice';
 import {
     
     Button,
-   
-    Heading, Input, 
+    Input, 
     useToast, 
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
@@ -27,6 +26,10 @@ function MyAccount() {
         fname: "",
         lname: "",
     })
+
+    useEffect(()=>{
+        document.title = 'My Account ✳ Colive'
+    },[])
 
     const dispatch = useDispatch()
 
@@ -74,9 +77,7 @@ function MyAccount() {
         <Box className='dash' style={{paddingBottom:'5em'}}>
             {/* header */}
             <nav className='dash-nav'>
-                <Heading size='sm' fontSize='50px' onClick={() => { navigate('/dashboard')}} style={{cursor:'pointer'}}>
-                    COLIVE
-                </Heading>
+                <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
                 <ul>
                     <div className="flex items-center gap-4">
                         <Dropdown placement="bottom-start">
@@ -85,7 +86,7 @@ function MyAccount() {
                                     as="button"
                                     avatarProps={{
                                         isBordered: false,
-                                        src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+                                        src: "https://res.cloudinary.com/eaglestudiosindia/image/upload/v1692431948/project/3105265_1_wnwylr.png",
                                     }}
                                     className="transition-transform"
 
@@ -100,8 +101,8 @@ function MyAccount() {
                                     My Account
                                 </DropdownItem>
                                 <DropdownItem key="My Bookings" onClick={() => { navigate("/my-bookings") }}>My Bookings</DropdownItem>
-                                <DropdownItem key="Help_and_feedback" onClick={() => { }}>
-                                    Help & Feedback
+                                <DropdownItem key="Help_and_feedback" onClick={() => { navigate('/faq') }}>
+                                    Faqs
                                 </DropdownItem>
                                 <DropdownItem onAction={() => { dispatch(clearUser); persistor.purge(); localStorage.clear(); window.location.replace('/login') }} key="Log Out" color="danger">
                                     Log Out

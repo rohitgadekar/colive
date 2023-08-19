@@ -58,6 +58,7 @@ function SignUp() {
 
                     
                 }
+                emailCheck()
                 if (!a) {
                     // http://localhost:8081/users/
                     fetch("https://colive-server.vercel.app/users/", {

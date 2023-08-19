@@ -62,7 +62,8 @@ function PropPage() {
         if(values.fname !== '' && values.lname !== '' && values.date !== '' && genderText !== '' && iamText !== '' && values.number !== '') {
         let unq = Math.floor(new Date().valueOf() * Math.random())
         localStorage.setItem('ref', unq)
-        fetch("http://localhost:8081/users/scheduled/", {
+            // http://localhost:8081/users/scheduled/
+            fetch("https://colive-server.vercel.app/users/scheduled/", {
             method: "PATCH",
             body: JSON.stringify({
                 username: state.reducer.user.users[0],
@@ -102,7 +103,8 @@ function PropPage() {
         if (values.fname !== '' && values.lname !== '' && values.date !== '' && genderText !== '' && iamText !== '' && values.number !== '') {
 
         let unq = Math.floor(new Date().valueOf() * Math.random())
-        fetch("http://localhost:8081/users/reserved/", {
+            // http://localhost:8081/users/reserved/
+            fetch("https://colive-server.vercel.app/users/reserved/", {
             method: "PATCH",
             body: JSON.stringify({
                 username: state.reducer.user.users[0],

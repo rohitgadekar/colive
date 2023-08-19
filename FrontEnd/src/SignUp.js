@@ -49,7 +49,8 @@ function SignUp() {
                 var a = false;
                 // eslint-disable-next-line
                 const emailCheck = async () => {
-                    await axios.get("http://localhost:8081/users/" + values.username)
+                    // http://localhost:8081/users/
+                    await axios.get("https://colive-server.vercel.app/users/" + values.username)
                     .then(res => {
                         a = res.data
                     })
@@ -58,7 +59,8 @@ function SignUp() {
                     
                 }
                 if (!a) {
-                    fetch("http://localhost:8081/users/", {
+                    // http://localhost:8081/users/
+                    fetch("https://colive-server.vercel.app/users/", {
                         method: "POST",
                         body: JSON.stringify({
                             lname: values.lname,

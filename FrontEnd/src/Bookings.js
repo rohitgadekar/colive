@@ -21,7 +21,8 @@ function Bookings() {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         document.title = 'My Bookings ✳ Colive'
-        fetch("http://localhost:8081/users/get/" + state.users[0], {
+        // http://localhost:8081/users/get/
+        fetch("https://colive-server.vercel.app/users/get/" + state.users[0], {
             method: "GET",
             headers: { 'Content-Type': 'application/json' }
         })
@@ -54,7 +55,8 @@ function Bookings() {
 
     const handleCancel = (e) => {
         console.log(e)
-        fetch("http://localhost:8081/users/del/", {
+        // http://localhost:8081/users/del/
+        fetch("https://colive-server.vercel.app/users/del/", {
             method: "PATCH",
             body: JSON.stringify({
                 username: state.users[0],

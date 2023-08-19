@@ -46,7 +46,8 @@ function MyAccount() {
             console.log(state.users[0])
             console.log(state.users[1])
             console.log(state.users[2])
-            fetch("http://localhost:8081/users/", {
+            // http://localhost:8081/users/
+            fetch("https://colive-server.vercel.app/users/", {
                 method: "PATCH",
                 body: JSON.stringify({
                     username: state.users[0],

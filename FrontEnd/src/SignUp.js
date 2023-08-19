@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import {
-    Heading,
     useToast,
 } from '@chakra-ui/react'
 import { Button } from "@nextui-org/react";
@@ -131,15 +130,15 @@ function SignUp() {
     return (
         <div className='Login-Signup'>
             <div className='card'>
-                <Heading size='lg' fontSize='50px' className='header'>
+                <h1 className='header'>
                     SIGNUP
-                </Heading>
-                <div className='myac1'>
+                </h1>
+                <div className='myac1' >
                     <div>
 
                         <div className='input-box'>
                             <label className='input-label'>first name</label>
-                            <input id='fname' autoComplete='off' name='fname' type='text' onChange={handleInput} placeholder='enter first name'></input>
+                            <input  id='fname' autoComplete='off' name='fname' type='text' onChange={handleInput} placeholder='enter first name'></input>
                         </div>
 
                         <div className='input-box'>

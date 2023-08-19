@@ -13,7 +13,7 @@ import { ChevronRightIcon } from '@chakra-ui/icons'
 
 
 function PropPage() {
-
+    // set document title to property name
     useEffect(()=>{
         document.title = state.reducer.property.data.record.prop[s].title
         // eslint-disable-next-line
@@ -21,8 +21,9 @@ function PropPage() {
     const state = useSelector((state) => state)
     const toast = useToast()
     const statuses = ['success', 'error', 'warning', 'info']
-    
+    const s = localStorage.getItem('s')
     const navigate = useNavigate();
+
     var [values] = useState({
         username: state.reducer.user.users[0],
         fname: "",
@@ -36,18 +37,21 @@ function PropPage() {
     const [gender, setGender] = React.useState(new Set(["Gender"]));
     const [iam, setIam] = React.useState(new Set(["I Am"]));
 
+    // gender dropdown
     const genderText = React.useMemo(
         () => Array.from(gender).join(", ").replaceAll("_", " "),
         [gender]
     );
+    // profession dropdown
     const iamText = React.useMemo(
         () => Array.from(iam).join(", ").replaceAll("_", " "),
         [iam]
     );
 
-    const s = localStorage.getItem('s')
+    
 
 
+    // breadcrumbs
     const handleBreadcrumb = (e) => {
         if (e.target.innerHTML === "Home")
             navigate('/dashboard')
@@ -58,6 +62,7 @@ function PropPage() {
             });
     }
 
+    // schedule visit to property
     const handleSchedule = () => {
         if(values.fname !== '' && values.lname !== '' && values.date !== '' && genderText !== '' && iamText !== '' && values.number !== '') {
         let unq = Math.floor(new Date().valueOf() * Math.random())
@@ -98,7 +103,7 @@ function PropPage() {
         }
     }
 
-
+    // reserve property
     const handleReserve = () => {
         if (values.fname !== '' && values.lname !== '' && values.date !== '' && genderText !== '' && iamText !== '' && values.number !== '') {
 
@@ -140,6 +145,7 @@ function PropPage() {
         }
     }
 
+    // modal states
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [ successState, setSucessState] = useState('')
 
@@ -190,7 +196,7 @@ function PropPage() {
                 {/* header end */}
 
                 {/* property card */}
-                <Container maxW={'full'} >
+                <Container maxW={'full'} style={{ fontFamily: 'Aileron-Regular' }}>
                     <SimpleGrid
 
                         columns={{ base: 1, lg: 2 }}
@@ -534,7 +540,7 @@ function PropPage() {
 
 
                     {/* breadcrumb start */}
-                    <Breadcrumb color={'white'} fontSize={'1.2em'} spacing='8px' separator={<ChevronRightIcon color='white' />}>
+                    <Breadcrumb color={'white'} fontSize={'1.2em'} spacing='8px' separator={<ChevronRightIcon color='white' />} style={{ fontFamily: 'Aileron-Regular' }}>
                         <BreadcrumbItem>
                             <BreadcrumbLink onClick={handleBreadcrumb}>Home</BreadcrumbLink>
                         </BreadcrumbItem>
@@ -549,7 +555,7 @@ function PropPage() {
                 {/* footer start */}
                 <Box
                     width={'full'}
-                    color={'white'}>
+                    color={'white'} style={{ fontFamily: 'Aileron-Regular' }}>
                     <Container as={Stack} maxW={'6xl'} py={5}>
                         <Stack spacing={6}>
                             <Box>
@@ -562,7 +568,7 @@ function PropPage() {
 
                     </Container>
 
-                    <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+                    <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} style={{ fontFamily: 'Aileron-Regular' }}>
                         <ModalContent>
                             {(onClose) => (
                                 <>

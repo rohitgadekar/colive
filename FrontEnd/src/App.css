@@ -1,13 +1,15 @@
 @font-face {
-  font-family: "Gilroy-Regular";
-  src: url("https://res.cloudinary.com/eaglestudiosindia/raw/upload/v1685277822/html5/fonts/Gilroy-Regular_uhksmi.ttf");
-  font-family: "Gilroy-Semibold";
-  src: url("https://res.cloudinary.com/eaglestudiosindia/raw/upload/v1685277860/html5/fonts/Gilroy-SemiBold_rj8gwc.ttf");
+  
+  font-family: "Aileron-Regular";
+  src: url("https://res.cloudinary.com/eaglestudiosindia/raw/upload/v1692464761/project/fonts/Aileron-Regular_jxh4fy.otf");
+}
+
+* {
+  font-family: 'Aileron-Regular';
 }
 
 .App {
   text-align: center;
-  font-family: "Gilroy-Regular";
 }
 
 body::-webkit-scrollbar {
@@ -43,18 +45,22 @@ label {
 
 .Login-Signup .card .input-box .input-label {
   padding-bottom: 1rem;
+  font-family: 'Aileron-Regular';
 }
 
 .Login-Signup .header {
-  margin-bottom: 1em;
-  font-family: "Gilroy-Semibold";
+  margin-bottom:1em;
+  font-size: 2em;
+  font-family: "Adam-Bold";
 }
+
 
 /* 
   -------------------------------------------------inputs ->
 */
 .Login-Signup .card .input-box input {
   font-size: 1.2rem;
+  font-family: 'Aileron-Regular';
   padding: 8px;
   border-radius: 0.7em;
   padding: 15px 20px;
@@ -193,7 +199,6 @@ u:hover {
   justify-content: space-evenly;
   gap: 2rem;
   padding: 1rem 1rem 1rem 1rem;
-  /* background-image: url("https://res.cloudinary.com/eaglestudiosindia/image/upload/v1683432341/html5/backgrounds/simon-lee-36TSQemRAxo-unsplash_f84z44.jpg"); */
 }
 
 

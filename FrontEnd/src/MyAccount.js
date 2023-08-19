@@ -13,26 +13,31 @@ import {
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+
+
+
 function MyAccount() {
-    const state = useSelector((state) => {
-        return state.reducer.user
-    })
     const toast = useToast()
     const statuses = ['success', 'error', 'warning', 'info']
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+    // get user from redux store
+    const state = useSelector((state) => {
+        return state.reducer.user
+    })
     
-
     var [values, setValues] = useState({
         fname: "",
         lname: "",
     })
 
+    // document title
     useEffect(()=>{
         document.title = 'My Account ✳ Colive'
     },[])
 
-    const dispatch = useDispatch()
-
+    
+    // input changes
     const handleInput = (e) => {
         const { name, value } = e.target
         setValues((prev) => {
@@ -41,6 +46,7 @@ function MyAccount() {
 
     }
 
+    // update details
     const handleClick = () => {
         if (values.fname !== '' && values.lname !== '') {
             console.log(state.users[0])
@@ -69,8 +75,6 @@ function MyAccount() {
                     document.getElementById('fname').value = ''
                     document.getElementById('lname').value = ''
                 })
-
-
         }
     }
 
@@ -81,7 +85,7 @@ function MyAccount() {
                 <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
                 <ul>
                     <div className="flex items-center gap-4">
-                        <Dropdown placement="bottom-start">
+                        <Dropdown placement="bottom-start" style={{ fontFamily: 'Aileron-Regular' }}>
                             <DropdownTrigger>
                                 <User
                                     as="button"
@@ -93,7 +97,7 @@ function MyAccount() {
 
                                 />
                             </DropdownTrigger>
-                            <DropdownMenu aria-label="User Actions" variant="flat">
+                            <DropdownMenu aria-label="User Actions" variant="flat" style={{ fontFamily: 'Aileron-Regular' }}>
                                 <DropdownItem key="profile" className="h-14 gap-2">
                                     <p className="font-bold">Signed in as</p>
                                     <p className="font-bold">{state.users[0]}</p>
@@ -118,7 +122,7 @@ function MyAccount() {
 
             <div   className='myac'>
                 <div >
-                    <div className='myacard'>
+                    <div className='myacard' style={{ fontFamily: 'Aileron-Regular' }}>
                         <h1 style={{paddingTop:'2em'}}>
                             PROFILE
                         </h1>
@@ -134,19 +138,16 @@ function MyAccount() {
                     </div>
                 </div>
                 <div>
-                    <div className='myacard'>
+                    <div className='myacard' style={{ fontFamily: 'Aileron-Regular' }}>
                         <h1 style={{paddingTop:'2em', paddingBottom:'2em'}}>UPDATE DETAILS</h1>
                         <Input name='fname' type='text' id='fname' onChange={handleInput} style={{marginBottom:'2em', width:'80%', fontSize:'.8em'}} placeholder='First Name' />
                         
                         <Input name='lname' type='text' id='lname' onChange={handleInput} style={{marginBottom:'2em', width:'80%', fontSize:'0.8em'}} placeholder='Last Name' />
                         
-                        <Button colorScheme='twitter' onClick={handleClick} style={{marginBottom:'2em'}}>update</Button>
+                        <Button  colorScheme='twitter' onClick={handleClick} style={{marginBottom:'2em'}}>update</Button>
                     </div>
                 </div>
             </div>
-            {/* <Card style={{marginTop:'3em'}}>
-                <Button>bookings</Button>
-            </Card> */}
 
         </Box>
 

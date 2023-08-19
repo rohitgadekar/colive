@@ -22,7 +22,7 @@ function Login() {
     const [state, setState] = useState(false)
     const toast = useToast()
     const statuses = ['success', 'error', 'warning', 'info']
-
+    const dispatch = useDispatch()
 
 
     //on login click
@@ -30,7 +30,7 @@ function Login() {
         navigate('/')
     }
 
-
+    // input change
     const handleChange = (e) => {
         const username = document.getElementById('username')
         const password = document.getElementById('password')
@@ -46,10 +46,9 @@ function Login() {
         }
 
     }
+    
 
-    // diap
-    const dispatch = useDispatch()
-
+    // login
     const handleSubmit = (e) => {
         const username = document.getElementById('username')
         const password = document.getElementById('password')
@@ -120,8 +119,6 @@ function Login() {
                             status: statuses[0],
                             isClosable: true,
                         })
-
-
                         dispatch(addUser(values.username))
                         dispatch(addUser(fname))
                         dispatch(addUser(lname))
@@ -129,16 +126,15 @@ function Login() {
                     }
                 })
 
-            //  },1000)
-
         }
 
     }
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
     const form = useRef();
 
+
+    // forgot password
     const sendEmail = (e) => {
 
         // eslint-disable-next-line

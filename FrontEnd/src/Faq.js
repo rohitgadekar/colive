@@ -8,7 +8,12 @@ import { useDispatch } from 'react-redux'
 
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+
+
+
 function Faq() {
+
+    // get user from redux store
     const state = useSelector((state) => {
         return state.reducer.user
     })
@@ -18,6 +23,7 @@ function Faq() {
 
     const dispatch = useDispatch()
 
+    // document title
     useEffect(() => {
         document.title = 'Faqs ✳ Colive'
     }, [])
@@ -64,7 +70,7 @@ function Faq() {
             </nav>
 
 
-            <div className='myac'>
+            <div className='myac' style={{ fontFamily: 'Aileron-Regular' }}>
                 <div >
                     <div className='accord'>
                         <Accordion variant="splitted" style={{widows:'20em'}} >

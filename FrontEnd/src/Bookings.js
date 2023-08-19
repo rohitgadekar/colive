@@ -16,9 +16,13 @@ function Bookings() {
 
 
 
+    const navigate = useNavigate();
     const [records] = useState([])
     const [reserved] = useState([])
     const [loading, setLoading] = useState(true)
+    const dispatch = useDispatch()
+    
+    // document title && get bookings
     useEffect(() => {
         document.title = 'My Bookings ✳ Colive'
         // http://localhost:8081/users/get/
@@ -28,19 +32,13 @@ function Bookings() {
         })
             .then(res => res.json()).then(data => {
                 for (let i = 0; i < data.reserved.length; i++) {
-                    // console.log(data.reserved[i].ref)
                     reserved.push(data.reserved[i].ref)
 
                 }
                 for (let i = 0; i < data.scheduled.length; i++) {
-                    // console.log(data.reserved[i].ref)
                     records.push(data.scheduled[i].ref)
 
                 }
-                // for (let index = 0; index < reserved.length; index++) {
-                //     console.log(reserved[index])
-
-                // }
                 console.log(records.length)
                 setLoading(false)
             })
@@ -50,9 +48,9 @@ function Bookings() {
     const state = useSelector((state) => {
         return state.reducer.user
     })
-    const navigate = useNavigate();
 
 
+    // cancel properties scheduled to visit
     const handleCancelScheduled = (e) => {
         console.log(e)
         // http://localhost:8081/users/del/
@@ -70,6 +68,7 @@ function Bookings() {
             })
     }
 
+    // cancel reserved properties
     const handleCancelReserved = (e) => {
         console.log(e)
         // http://localhost:8081/users/del/
@@ -87,18 +86,13 @@ function Bookings() {
             })
     }
 
-    const dispatch = useDispatch()
-
-
-
-
-
+    
     if (!loading && (records.length !== 0 || reserved.length !== 0))
         return (
             <Box className='dash' style={{ paddingBottom: '5em' }}>
                 {/* header */}
                 <nav className='dash-nav'>
-                    <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
+                    <h1  class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
                     <ul>
                         <div className="flex items-center gap-4">
                             <Dropdown placement="bottom-start">
@@ -136,7 +130,7 @@ function Bookings() {
                 </nav>
 
 
-                <div className='myac' >
+                <div className='myac' style={{ fontFamily: 'Aileron-Regular' }}>
                     <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: "2em", justifyContent: 'center' }}>
 
 

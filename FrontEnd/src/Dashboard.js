@@ -53,7 +53,7 @@ function Dashboard() {
 
     const [selectedKeys, setSelectedKeys] = React.useState(new Set(["All Cities"]));
 
-
+    // filter cities
     const handleChange = (key) => {
         if (key === "All Cities")
             setRecords(data)
@@ -79,7 +79,7 @@ function Dashboard() {
             setRecords(data.filter(f => f.City.includes("Kolkata")))
     }
 
-
+    // dropdown memo
     const selectedValue = React.useMemo(
         () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
         [selectedKeys]
@@ -94,8 +94,6 @@ function Dashboard() {
         })
 
         localStorage.setItem('s', [e.target.id - 1])
-        // localStorage.setItem('t', prop[e.target.id - 1].title)
-        // localStorage.setItem('p', prop[e.target.id - 1].formattedPrice)
         navigate('/property')
         window.scrollTo(0, 0)
     }
@@ -115,20 +113,7 @@ function Dashboard() {
         console.log(records.length)
     }
 
-    // loading screen
-    // if (isLoading) {
-    //     return (
-    //         // <div style={{
-    //         //     display: "flex",
-    //         //     flexDirection: "column",
-    //         //     alignItems: "center",
-    //         //     justifyContent: "center",
-    //         //     height: "100vh",
-    //         // }}>Loading the data {console.log(state.users)}</div>
-
-    //     );
-    // }
-    // main
+   
     return (
         <>
             {isLoading ? <ReactLoading></ReactLoading> :
@@ -136,7 +121,7 @@ function Dashboard() {
                     {/* header */}
                     <nav className='dash-nav'>
                         
-                        <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer' }}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
+                        <h1 class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl" onClick={() => { navigate('/dashboard') }} style={{ cursor: 'pointer', fontFamily:'Adam-Bold'}}><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">COLIVE</span></h1>
 
                         <ul>
                             <div className="flex items-center gap-4">
@@ -153,7 +138,7 @@ function Dashboard() {
 
                                         />
                                     </DropdownTrigger>
-                                    <DropdownMenu aria-label="User Actions" variant="flat">
+                                    <DropdownMenu aria-label="User Actions" variant="flat" style={{ fontFamily:'Aileron-Regular'}}>
                                         <DropdownItem key="profile" className="h-14 gap-2">
                                             <p className="font-bold">Signed in as</p>
                                             <p className="font-bold">{state.users[0]}</p>
@@ -185,7 +170,7 @@ function Dashboard() {
                                         className='text-white-100 capitalize w-full'
                                         id='xsx'
                                         variant="bordered"
-
+                                        style={{ fontFamily: 'Aileron-Regular' }}
                                     >
                                         {selectedValue}
                                     </Button>
@@ -194,12 +179,13 @@ function Dashboard() {
                                     aria-label="Single selection actions"
                                     variant="flat"
                                     onAction={(key) => { handleChange(key) }}
-                                    style={{ color: "white" }}
+                                    style={{ color: "white", fontFamily: 'Aileron-Regular' }}
                                     closeOnSelect={true}
                                     disallowEmptySelection
                                     selectionMode="single"
                                     selectedKeys={selectedKeys}
                                     onSelectionChange={setSelectedKeys}
+                                    
                                 >
                                     <DropdownItem key="All Cities">All Cities</DropdownItem>
                                     <DropdownItem key="Mumbai">Mumbai</DropdownItem>
@@ -216,17 +202,17 @@ function Dashboard() {
                             </Dropdown>
 
 
-                            <Input variant='search' autoComplete='off' color={'white'} className='search-container' id='ips' placeholder='search' onChange={handleQuery} />
+                            <Input style={{ fontFamily:'Aileron-Regular'}} variant='search' autoComplete='off' color={'white'} className='search-container' id='ips' placeholder='search' onChange={handleQuery} />
 
 
-                            <Button variant='solid' color='primary' onPress={() => { document.getElementById('ips').value = ''; document.getElementById('res').style.display = 'none'; handleChange(selectedValue) }} className='chip'>clear</Button>
+                            <Button style={{ fontFamily: 'Aileron-Regular' }} variant='solid' color='primary' onPress={() => { document.getElementById('ips').value = ''; document.getElementById('res').style.display = 'none'; handleChange(selectedValue) }} className='chip'>clear</Button>
                         </Center>
 
                         {/* dynamic results box */}
                         <Container bg={'white'} width={'100%'} color={'white'} borderRadius={'.8em'} padding={'5'} textAlign={'left'} className='res' id='res' display={'none'}>
                             <ul className='query'>
                                 {records.map((d, id) => {
-                                    return <div key={id} className='query-box' onClick={handleSearch}>{d.title}</div>
+                                    return <div key={id} style={{ fontFamily:'Aileron-Regular'}} className='query-box' onClick={handleSearch}>{d.title}</div>
                                 })}
 
                             </ul>
@@ -246,17 +232,19 @@ function Dashboard() {
                                     <Box p='2' >
                                         {/* badge */}
                                         <Box display='flex' alignItems='baseline'>
-                                            <Chip color="danger" variant="solid" className='chip text-white-800'>New</Chip>
+                                            <Chip color="danger" variant="solid" className='chip text-white-800' style={{ fontFamily: 'Aileron-Regular' }}>New</Chip>
                                             &nbsp;
                                             &nbsp;
                                             &nbsp;
                                             {/* beds */}
-                                            <Chip color="danger" variant="solid" className='chip text-white-800'>{d.beds} beds &bull; {d.baths} baths</Chip>
+                                            <Chip style={{ fontFamily: 'Aileron-Regular' }} color="danger" variant="solid" className='chip text-white-800'>{d.beds} beds &bull; {d.baths} baths</Chip>
 
                                         </Box>
 
                                         {/* property title */}
                                         <Box
+
+                                            style={{ fontFamily: 'Aileron-Regular' }}
                                             textAlign={'left'}
                                             mt='2'
                                             fontWeight='bold'
@@ -265,6 +253,7 @@ function Dashboard() {
                                             noOfLines={1}
                                             onClick={handleCard} id={d.id}
                                             className='ToggleCard'
+                                            
                                         >
                                             {d.title}
                                         </Box>
@@ -272,19 +261,20 @@ function Dashboard() {
                                         {/* property price */}
                                         <Box textAlign={'left'}>
                                             {d.formattedPrice}
-                                            <Box as='span' color='white' fontSize='sm' >
+                                            <Box as='span' color='white' fontSize='sm' style={{ fontFamily: 'Aileron-Regular' }} >
                                                 / wk
                                             </Box>
                                         </Box>
 
                                         <Box
+                                            style={{ fontFamily: 'Aileron-Regular' }}
                                             textAlign={'left'} fontSize={'md'}
                                         >
                                             {d.City} • {d.Area}
                                         </Box>
 
                                         {/* rating */}
-                                        <Box display='flex' mt='0' alignItems='center'>
+                                        <Box display='flex' mt='0' alignItems='center' style={{ fontFamily: 'Aileron-Regular' }}>
                                             {Array(5)
                                                 .fill('')
                                                 .map((_, i) => (
@@ -294,7 +284,7 @@ function Dashboard() {
                                                     />
                                                 ))}
                                             {/* reviews */}
-                                            <Box as='span' ml='2' color='white' fontSize='md'>
+                                            <Box as='span' ml='2' color='white' fontSize='md' style={{ fontFamily: 'Aileron-Regular' }}>
                                                 {d.reviewCount} reviews
                                             </Box>
                                         </Box>

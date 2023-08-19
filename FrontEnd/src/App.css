@@ -1,0 +1,368 @@
+@font-face {
+  font-family: "Gilroy-Regular";
+  src: url("https://res.cloudinary.com/eaglestudiosindia/raw/upload/v1685277822/html5/fonts/Gilroy-Regular_uhksmi.ttf");
+  font-family: "Gilroy-Semibold";
+  src: url("https://res.cloudinary.com/eaglestudiosindia/raw/upload/v1685277860/html5/fonts/Gilroy-SemiBold_rj8gwc.ttf");
+}
+
+.App {
+  text-align: center;
+  font-family: "Gilroy-Regular";
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.Login-Signup {
+  background-color: #282c34;
+  background-image: url("https://res.cloudinary.com/eaglestudiosindia/image/upload/v1683432341/html5/backgrounds/simon-lee-36TSQemRAxo-unsplash_f84z44.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Login-Signup .card {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  outline: 1px solid white;
+  padding: 2rem 5rem 2rem 5rem;
+  border-radius: 1em;
+}
+
+label {
+  font-size: 1.2rem;
+  padding-left: 5px;
+}
+
+.Login-Signup .card .input-box .input-label {
+  padding-bottom: 1rem;
+}
+
+.Login-Signup .header {
+  margin-bottom: 1em;
+  font-family: "Gilroy-Semibold";
+}
+
+/* 
+  -------------------------------------------------inputs ->
+*/
+.Login-Signup .card .input-box input {
+  font-size: 1.2rem;
+  padding: 8px;
+  border-radius: 0.7em;
+  padding: 15px 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  color: white;
+  border-style: none;
+}
+.Login-Signup .card .input-box input:focus {
+  outline: #4eb5f1 3px solid;
+}
+.Login-Signup .card .input-box input::placeholder {
+  color: rgb(230, 219, 219);
+}
+
+/*
+------------------------------------------------------------ 
+ */
+
+.Login-Signup .card .input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 2rem;
+}
+
+/* 
+--------------------------------------------------Buttons->
+*/
+.main {
+  background-color: #282c34;
+  background-image: url("https://res.cloudinary.com/eaglestudiosindia/image/upload/v1685186969/html5/backgrounds/mjh-shikder-EEmxj4HwDdQ-unsplash_vidoa6.jpg");
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* 
+------------------------------------------------------------
+*/
+
+/* 
+--------------------------------------------------utag->
+*/
+
+.utag-label {
+  font-size: 0.6em;
+}
+
+.utag {
+  margin-bottom: .8em;
+}
+
+u:hover {
+  cursor: pointer;
+}
+
+/* 
+------------------------------------------------------------
+*/
+
+/* 
+--------------------------------------------------dash - nav ->
+*/
+
+.dash-nav {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 2rem;
+  width: 100%;
+  color: white;
+}
+.dash-nav .dd {
+  background-color: #0ae9b91f;
+  color: white;
+  text-align: left;
+  margin: auto;
+}
+
+.dash-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  padding: 0;
+  text-align: left;
+}
+
+.hs {
+  color: #4eb5f1;
+  background-color: #4eb5f1;
+}
+
+.dash {
+  background-image: url("https://res.cloudinary.com/eaglestudiosindia/image/upload/v1692215944/html5/backgrounds/dim-gunger-BUbgUzFVJw8-unsplash_fgao7b.jpg");
+  background-repeat: inherit;
+  background-size: auto;
+  /* background-color: rgb(30, 43, 67); */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* text-align: center; */
+  align-items: center;
+  font-size: calc(10px + 1vmin);
+  color: black;
+}
+
+.team {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+}
+.search {
+  padding: 2rem;
+  color: white;
+  background-color: transparent;
+  /* width: 82%; */
+  text-align: center;
+}
+
+.query {
+  cursor: pointer;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2rem;
+  padding: 1rem 1rem 1rem 1rem;
+  /* background-image: url("https://res.cloudinary.com/eaglestudiosindia/image/upload/v1683432341/html5/backgrounds/simon-lee-36TSQemRAxo-unsplash_f84z44.jpg"); */
+}
+
+
+.btn {
+  /* background-color: black; */
+  color: white;
+}
+
+@media only screen and (max-width: 500px) {
+  .Login-Signup .card {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 2rem;
+    width: 90vw;
+    border-radius: 0.5em;
+    padding: 2rem 2rem 2rem 2rem;
+  }
+
+  .Login-Signup .header {
+    margin-bottom: 0.5em;
+  }
+
+  .Login-Signup .card .input-box input {
+    font-size: 1.2rem;
+    padding: 8px;
+    border-radius: 0.5em;
+    padding: 15px 15x;
+    width: 73vw;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    color: white;
+    border-style: none;
+  }
+
+  .header,
+  label {
+    font-size: 1.5em;
+  }
+  label {
+    font-size: 1em;
+  }
+
+  .utag-label {
+    font-size: 0.9em;
+  }
+  .search {
+    padding: 2rem;
+    color: white;
+    background-color: transparent;
+    width: 100%;
+    text-align: center;
+  }
+  #Carousal {
+    height: 200px;
+  }
+
+  div .myac1 {
+    gap: 0.2em;
+  }
+}
+.ToggleCard {
+  image-rendering: optimizeQuality;
+  image-orientation: from-image;
+  image-resolution: 1920 * 1080;
+}
+
+Input::placeholder {
+  color: white;
+}
+
+.lm {
+  column-count: 2;
+  column-gap: 0;
+  flex: 1;
+  gap: 1em;
+}
+
+.lm > * {
+  flex: 1 1 160px;
+}
+
+.myac {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5em;
+  gap: 5em;
+  justify-content: center;
+  align-items: center;
+}
+.myac1 {
+  display: flex;
+  flex-wrap: wrap;
+  /* margin-top: em; */
+  gap: 1em;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.query-box {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  margin-top: 1em;
+  padding: 1em;
+  border-radius: .8em;
+}
+
+.query-box:hover {
+  background-color: #282c34;
+}
+
+.prop,
+.search-container {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: none;
+  border-radius: 1em;
+  color: white;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div .res {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  /* margin-top: 1em; */
+}
+
+.myacard {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  color: white;
+  font-size: 1.2em;
+  border-radius: .8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15em;
+  padding: .5em;
+}
+.booking {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  color: white;
+  font-size: 1.2em;
+  border-radius: .8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  padding: .5em;
+}
+
+.chip {
+  background-color: rgba(255, 255, 255, .10);
+  backdrop-filter: blur(20px);
+  outline: 2px solid white;
+  font-weight: bold;
+  margin-top: .5em;
+}
+
+.chip:hover {
+  background-color: #282c34;
+}
+
+.img:hover {
+  transform:scale(1.4);
+}
+
+.ToggleCard {
+  cursor: pointer;
+}

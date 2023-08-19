@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "user": "nikhil",
+      "pass": "nikhil@123",
+      "id": 1
+    },
+    {
+      "user": "rohit",
+      "pass": "rohit@123",
+      "id": 2
+    },
+    {
+      "user": "admin",
+      "pass": "admin@123",
+      "id": 3
+    }
+  ]
+}

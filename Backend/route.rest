@@ -1,0 +1,32 @@
+GET http://localhost:8081/users
+
+###
+
+GET http://localhost:8081/users/rohit
+
+
+###
+POST http://localhost:8081/users
+Content-Type: application/json
+
+{
+    "username":"nikhil",
+    "password":"admin"
+}
+
+#####
+PATCH  http://localhost:8081/users/
+Content-Type: application/json
+
+{
+    "username":"nikhil",
+    "password":"ads"
+}
+
+####
+DELETE   http://localhost:8081/users/
+Content-Type: application/json
+
+{
+    "username":"rohit"
+}

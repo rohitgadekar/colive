@@ -46,21 +46,45 @@ function SignUp() {
         // var password = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$"
         if (values.username.match(mailformat)) {
             if (values.username !== '' && values.password !== '') {
-                var a = '';
-                // eslint-disable-next-line
-                const emailCheck = async () => {
-                    // http://localhost:8081/users/
-                    await axios.get("https://colive-server.vercel.app/users/" + values.username)
-                    .then(res => {
-                        a = res.data
-                    })
-                    
 
-                    
-                }
+                // eslint-disable-next-line
                 emailCheck()
-                if (!a) {
+
+
+
+            }
+            else {
+
+                document.getElementById('password').style.outline = 'red 3px solid'
+                document.getElementById('fname').style.outline = 'red 3px solid'
+                document.getElementById('lname').style.outline = 'red 3px solid'
+            }
+
+        }
+        else {
+
+            document.getElementById('username').style.outline = 'red 3px solid'
+            document.getElementById('fname').style.outline = 'red 3px solid'
+            document.getElementById('lname').style.outline = 'red 3px solid'
+            document.getElementById('password').style.outline = 'red 3px solid'
+            toast({
+                title: `${statuses[2]} invalid credentials `,
+                status: statuses[2],
+                isClosable: true,
+            })
+        }
+
+    }
+
+
+    const emailCheck = async () => {
+        // http://localhost:8081/users/
+
+        await axios.get("https://colive-server.vercel.app/users/" + values.username)
+            .then(res => {
+                if (!res) {
                     // http://localhost:8081/users/
+
                     fetch("https://colive-server.vercel.app/users/", {
                         method: "POST",
                         body: JSON.stringify({
@@ -87,35 +111,16 @@ function SignUp() {
                 }
                 else {
                     document.getElementById('username').style.outline = 'red 3px solid'
-                    
+
                     toast({
                         title: `${statuses[2]} email already in use`,
                         status: statuses[2],
                         isClosable: true,
                     })
                 }
-                
-            }
-            else {
-                
-                document.getElementById('password').style.outline = 'red 3px solid'
-                document.getElementById('fname').style.outline = 'red 3px solid'
-                document.getElementById('lname').style.outline = 'red 3px solid'
-            }
-
-        }
-        else {
-
-            document.getElementById('username').style.outline = 'red 3px solid'
-            document.getElementById('fname').style.outline = 'red 3px solid'
-            document.getElementById('lname').style.outline = 'red 3px solid'
-            document.getElementById('password').style.outline = 'red 3px solid'
-            toast({
-                title: `${statuses[2]} invalid credentials `,
-                status: statuses[2],
-                isClosable: true,
             })
-        }
+
+
 
     }
 

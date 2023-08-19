@@ -129,7 +129,7 @@ function SignUp() {
 
     return (
         <div className='Login-Signup'>
-            <div className='card'>
+            <div className='card' style={{margin:'5em'}}>
                 <h1 className='header'>
                     SIGNUP
                 </h1>

@@ -5,7 +5,7 @@ node_modules/
 FrontEnd/node_modules/
 
 # Ignore node_modules in backend
-Backend/server/node_modules/
+Backend/node_modules/
 
 # Ignore any compiled or build output
 build/

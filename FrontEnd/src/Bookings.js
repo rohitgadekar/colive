@@ -53,10 +53,27 @@ function Bookings() {
     const navigate = useNavigate();
 
 
-    const handleCancel = (e) => {
+    const handleCancelScheduled = (e) => {
         console.log(e)
         // http://localhost:8081/users/del/
-        fetch("https://colive-server.vercel.app/users/del/", {
+        fetch("https://colive-server.vercel.app/users/del/sc/", {
+            method: "PATCH",
+            body: JSON.stringify({
+                username: state.users[0],
+                ref: e
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data)
+                window.location.reload()
+            })
+    }
+
+    const handleCancelReserved = (e) => {
+        console.log(e)
+        // http://localhost:8081/users/del/
+        fetch("https://colive-server.vercel.app/users/del/rs/", {
             method: "PATCH",
             body: JSON.stringify({
                 username: state.users[0],
@@ -138,7 +155,7 @@ function Bookings() {
                                         radius="full"
                                         size="md"
                                         variant="ghost"
-                                        onPress={() => { handleCancel(item[7]) }}
+                                        onPress={() => { handleCancelScheduled(item[7]) }}
                                     >
                                         cancel booking
                                     </Button>
@@ -183,7 +200,7 @@ function Bookings() {
                                         radius="full"
                                         size="md"
                                         variant="ghost"
-                                        onPress={() => { console.log(item[7]) }}
+                                        onPress={() => { handleCancelReserved(item[7]) }}
                                     >
                                         cancel booking
                                     </Button>

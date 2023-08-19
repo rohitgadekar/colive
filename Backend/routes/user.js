@@ -140,13 +140,28 @@ router.patch('/reserved/', async (req, res) => {
 })
 
 
-router.patch('/del/', async (req, res) => {
+router.patch('/del/sc/', async (req, res) => {
     const user = new User({
         username: req.body.username,
         ref: req.body.ref,
     })
     try {
         const newUser = await User.updateOne({ username: user.username }, { $pull: { "scheduled": { "ref": user.ref } } })
+
+        // res.json(newUser)
+        res.send(newUser)
+    } catch (error) {
+        res.json({ message: error.message })
+    }
+})
+
+router.patch('/del/rs/', async (req, res) => {
+    const user = new User({
+        username: req.body.username,
+        ref: req.body.ref,
+    })
+    try {
+        const newUser = await User.updateOne({ username: user.username }, { $pull: { "reserved": { "ref": user.ref } } })
 
         // res.json(newUser)
         res.send(newUser)

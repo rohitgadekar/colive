@@ -361,6 +361,10 @@ div .res {
 
 .img:hover {
   transform:scale(1.4);
+  -webkit-transition: all 500ms ease;
+-moz-transition: all 500ms ease;
+-ms-transition: all 500ms ease;
+-o-transition: all 500ms ease;
 }
 
 .ToggleCard {
@@ -393,3 +397,4 @@ div .res {
   border-radius: .8em;
   flex-grow: unset;
 }
+

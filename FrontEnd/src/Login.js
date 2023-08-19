@@ -88,7 +88,8 @@ function Login() {
             // setTimeout(() => { 
             var fname = ''
             var lname = ''
-            fetch('http://localhost:8081/users', {
+            // http://localhost:8081/users
+            fetch('https://colive-server.vercel.app/users', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
             })
@@ -143,8 +144,8 @@ function Login() {
         // eslint-disable-next-line
         var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         if (email.match(mailformat)) {
-
-            fetch('http://localhost:8081/users', {
+            // http://localhost:8081/users
+            fetch('https://colive-server.vercel.app/users', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
             })
@@ -161,7 +162,8 @@ function Login() {
                     if (key === 1) {
 
                         if (password !== '') {
-                            fetch("http://localhost:8081/users/upwd/", {
+                            // http://localhost:8081/users/upwd/
+                            fetch("https://colive-server.vercel.app/users/upwd/", {
                                 method: "PATCH",
                                 body: JSON.stringify({
                                     username: email,

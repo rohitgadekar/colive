@@ -46,7 +46,7 @@ function SignUp() {
         // var password = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$"
         if (values.username.match(mailformat)) {
             if (values.username !== '' && values.password !== '') {
-                var a = false;
+                var a = '';
                 // eslint-disable-next-line
                 const emailCheck = async () => {
                     // http://localhost:8081/users/

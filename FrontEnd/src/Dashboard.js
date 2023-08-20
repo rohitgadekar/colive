@@ -32,7 +32,6 @@ function Dashboard() {
                 SetProp(res.data.record.prop)
                 setRecords(res.data.record.prop)
                 sendData(res.data.record.prop)
-                console.log(res.data.record.prop)
                 setLoading(false)
             })
     }, [])

@@ -94,7 +94,6 @@ function Login() {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     let key = 0;
                     for (let index = 0; index < data.length; index++) {
                         if (values.username === data[index].username && values.password === data[index].password) {
@@ -252,7 +251,7 @@ function Login() {
 
                                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                                             <label style={{ paddingBottom: '.8em' }}>Enter Password</label>
-                                            <input autoComplete='off' id='password' className='forgot' placeholder='enter password' onChange={(e) => { password = e.target.value; }} />
+                                            <input autoComplete='off' id='password' className='forgot' type='password' placeholder='enter password' onChange={(e) => { password = e.target.value; }} />
                                         </div>
 
                                     </form>

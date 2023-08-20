@@ -81,7 +81,8 @@ function SignUp() {
 
         await axios.get("https://colive-server.vercel.app/users/" + values.username)
             .then(res => {
-                if (!res) {
+                let a = res.data;
+                if (!a) {
                     // http://localhost:8081/users/
 
                     fetch("https://colive-server.vercel.app/users/", {
@@ -94,19 +95,20 @@ function SignUp() {
                         }),
                         headers: { "Content-Type": "application/json" }
                     })
-                    let submit = document.getElementById('submit')
-                    submit.style.backgroundColor = 'grey'
-                    submit.innerHTML = 'creating account'
-                    submit.disabled = true
-                    setTimeout(() => {
+                    .then(()=>{
+
                         document.getElementById('username').value = ''
                         document.getElementById('password').value = ''
                         document.getElementById('fname').value = ''
                         document.getElementById('lname').value = ''
-                        submit.innerHTML = 'account created'
-                        submit.style.backgroundColor = '#4eb5f1'
-                        submit.disabled = false
-                    }, 2000)
+                        toast({
+                            title: `account created`,
+                            status: statuses[0],
+                            isClosable: true,
+                        })
+                        
+                    })
+                    
                 }
                 else {
                     document.getElementById('username').style.outline = 'red 3px solid'

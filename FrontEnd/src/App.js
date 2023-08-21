@@ -7,6 +7,7 @@ import PropPage from './PropPage';
 import MyAccount from './MyAccount';
 import Bookings from './Bookings';
 import Faq from './Faq';
+import Document from './Document';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/property' element={<PropPage />}></Route>
           <Route path='/my-bookings' element={<Bookings />}></Route>
           <Route path='/faq' element={<Faq />}></Route>
+          <Route path='/document' element={<Document />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

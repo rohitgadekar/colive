@@ -25,7 +25,7 @@ function Document() {
 
     // document title
     useEffect(() => {
-        document.title = 'My Account ✳ Colive'
+        document.title = 'Document ✳ Colive'
         onOpen();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

@@ -21,7 +21,7 @@ The Coliving Spaces Website is a dynamic web application that offers a convenien
 
 **Server :**  Nodejs, Express, Mongoose
 
-**Datebase :**  MongoDB, JsonBin
+**DataBase :**  MongoDB, JsonBin
 
 
 ## Installation
@@ -41,9 +41,9 @@ Clone this repository to your local machine.
 
 To run this project, you will need to add the following environment variables to your .env file
 
-    1. Navigate to Backend folder add .env with the following key followed by your database url
+ * Navigate to Backend folder add .env with the following key followed by your database url
 
-    2. Format should be 
+* Format should be 
     mongodb+srv://{username}:{password}@{cluster}.{authID}.mongodb.net/{database}?retryWrites=true&w=majority
 
 `DATABASE_URL`
@@ -91,8 +91,23 @@ Start the server
 ## Authors
 
 - [@rohitgadekar](https://www.github.com/rohitgadekar)
+- [@nikhilranaware](https://www.github.com/nikhilranaware1999)
 
 
 
+## Documentation
+
+- [SRS](https://u.pcloud.link/publink/show?code=XZzD53VZNHNAL5KRBvV8IrsVoeXSf5CeyKSk)
+
+- [REPORT](https://u.pcloud.link/publink/show?code=XZaD53VZh39jS7v4cnmyg8IlUwbDlYExPnBy)
+
+- [PPT](https://u.pcloud.link/publink/show?code=XZX153VZaTyDW3oiaL0T1npCuzvYYbn8v3u7)
+
+## Badges
+
+
+![Logo](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) ![Logo](https://img.shields.io/badge/Chakra--UI-319795?style=for-the-badge&logo=chakra-ui&logoColor=white) ![Logo](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Logo](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Logo](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Logo](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Logo](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white) ![Logo](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Logo](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white) ![Logo](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![Logo](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![Logo](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white) ![Logo](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white) ![Logo](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) ![Logo](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white) ![Logo](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) ![Logo](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white) ![Logo](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+
+##
 ![Logo](https://res.cloudinary.com/eaglestudiosindia/image/upload/v1693392245/11_krldmo.png)
 

@@ -101,7 +101,7 @@ function Document() {
 
 
 
-            <Modal backdrop='blur' size='l3xl' isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+            <Modal className='res' backdrop='blur' size='l3xl' isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
                 <ModalContent>
                     {(onClose) => (
                         <>

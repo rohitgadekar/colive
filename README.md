@@ -103,6 +103,14 @@ Start the server
 
 - [PPT](https://u.pcloud.link/publink/show?code=XZX153VZaTyDW3oiaL0T1npCuzvYYbn8v3u7)
 
+
+
+## Feedback
+
+If you have any feedback, please reach out to me [here](https://www.rohitgadekar.com/support)
+
+
+
 ## Badges
 
 
